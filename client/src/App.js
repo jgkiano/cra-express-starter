@@ -1,19 +1,22 @@
 import React, { Component } from "react";
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch } from "react-router-dom";
+import { Home } from "pages";
+
+//track page navigation
+const history = createBrowserHistory({});
+history.listen(location => {});
 
 class App extends Component {
-    state = {
-        counter: 0
-    };
-
     render() {
-        return <span onClick={this.logClicks}>Hello World!!!!!!</span>;
-    }
-
-    logClicks = () => {
-        this.setState({ counter: this.state.counter + 1 }, () =>
-            console.log(this.state)
+        return (
+            <Router history={history}>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                </Switch>
+            </Router>
         );
-    };
+    }
 }
 
 export default App;
