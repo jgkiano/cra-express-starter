@@ -1,22 +1,16 @@
-import React, { Component } from "react";
-import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
-import { Home } from "pages";
+import React from 'react';
+import { createBrowserHistory } from 'history';
+import { Router, Route, Switch } from 'react-router-dom';
+import Pages from 'pages';
 
-//track page navigation
+// track page navigation
 const history = createBrowserHistory({});
-history.listen(location => {});
+history.listen(location => location);
 
-class App extends Component {
-    render() {
-        return (
-            <Router history={history}>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                </Switch>
-            </Router>
-        );
-    }
-}
-
-export default App;
+export default () => (
+  <Router history={history}>
+    <Switch>
+      <Route path="/" exact component={Pages.Home} />
+    </Switch>
+  </Router>
+);
